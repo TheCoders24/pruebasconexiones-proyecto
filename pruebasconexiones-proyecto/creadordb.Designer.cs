@@ -88,6 +88,7 @@
             this.comboBoxdatabase.Name = "comboBoxdatabase";
             this.comboBoxdatabase.Size = new System.Drawing.Size(121, 21);
             this.comboBoxdatabase.TabIndex = 5;
+            this.comboBoxdatabase.SelectedIndexChanged += new System.EventHandler(this.comboBoxdatabase_SelectedIndexChanged);
             // 
             // creadordb
             // 

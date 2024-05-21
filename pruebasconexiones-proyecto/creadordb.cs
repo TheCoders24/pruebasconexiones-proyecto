@@ -20,7 +20,7 @@ namespace pruebasconexiones_proyecto
         public string user;
         public string password;
         #endregion
-
+       
         public creadordb()
         {
             InitializeComponent();
@@ -64,18 +64,21 @@ namespace pruebasconexiones_proyecto
                     using (SqlCommand commandCrearBD = new SqlCommand(queryCrearBD, connection))
                     {
                         commandCrearBD.ExecuteNonQuery();
+                        connection.Close();
                     }
 
                     MessageBox.Show($"La base de datos '{nombreBaseDeDatos}' ha sido creada con éxito.");
 
                     // Crear tablas y campos
                     CrearTablasYCampos(connection, nombreBaseDeDatos);
+                    
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al crear la base de datos: {ex.Message}");
             }
+            
 
         }
         private void CrearTablasYCampos(SqlConnection connection, string nombreBaseDeDatos)
@@ -103,6 +106,7 @@ namespace pruebasconexiones_proyecto
                             using (SqlCommand commandCrearTabla = new SqlCommand(queryCrearTabla, connection))
                             {
                                 commandCrearTabla.ExecuteNonQuery();
+                                connection.Close(); 
                             }
                         }
                     }
@@ -125,6 +129,11 @@ namespace pruebasconexiones_proyecto
         }
 
         private void txtnombredebasededatos_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxdatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

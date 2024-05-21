@@ -14,6 +14,7 @@ namespace conexionesdb
         public static string ServidorNo { get; set; }
         public static string users { get; set; }
         public static string password { get; set; }
+        public static string database { get; set; }
         #endregion
 
         #region constructor

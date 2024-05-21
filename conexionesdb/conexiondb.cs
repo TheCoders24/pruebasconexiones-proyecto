@@ -32,17 +32,17 @@ namespace conexionesdb
             ServidorNo = servidores1;
             users = users1;
             password = passsword;
-            return $"Data Source={ServidorNo};User ID={users};Password={password};";
+            return $"Data Source={ServidorNo};User ID={users};Password={password};TrustServerCertificate=true;";
         }
         public static SqlConnection GetConnection()
         {
-            SqlConnection conexion = new SqlConnection(conexionStatic(ServidorNo,users,password));
+            SqlConnection conexion = new SqlConnection(conexionStatic(ServidorNo, users, password));
             return conexion;
         }
         #endregion
 
         #region comprobacion SihayConexion
-        public Boolean SiHayConexion()
+        public Boolean SiHayConexion() 
         {
             try
             {

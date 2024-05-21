@@ -52,6 +52,7 @@
             this.txtServidor.Name = "txtServidor";
             this.txtServidor.Size = new System.Drawing.Size(134, 20);
             this.txtServidor.TabIndex = 1;
+            this.txtServidor.Text = "ALEXIS";
             // 
             // button1
             // 
@@ -69,6 +70,7 @@
             this.txtUsers.Name = "txtUsers";
             this.txtUsers.Size = new System.Drawing.Size(134, 20);
             this.txtUsers.TabIndex = 4;
+            this.txtUsers.Text = "sa";
             // 
             // label2
             // 
@@ -85,6 +87,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(134, 20);
             this.txtPassword.TabIndex = 6;
+            this.txtPassword.Text = "12345";
             // 
             // label3
             // 

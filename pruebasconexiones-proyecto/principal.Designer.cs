@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DATABASE = new System.Windows.Forms.ListBox();
+            this.DATABASE = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // DATABASE
             // 
-            this.DATABASE.FormattingEnabled = true;
-            this.DATABASE.Location = new System.Drawing.Point(-1, 2);
+            this.DATABASE.Location = new System.Drawing.Point(2, 0);
             this.DATABASE.Name = "DATABASE";
-            this.DATABASE.Size = new System.Drawing.Size(212, 446);
+            this.DATABASE.Size = new System.Drawing.Size(160, 449);
             this.DATABASE.TabIndex = 0;
             // 
             // principal
@@ -54,6 +53,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox DATABASE;
+        private System.Windows.Forms.TreeView DATABASE;
     }
 }

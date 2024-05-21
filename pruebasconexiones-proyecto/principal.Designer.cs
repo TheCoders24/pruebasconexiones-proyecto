@@ -28,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.DATABASE = new System.Windows.Forms.ListBox();
+            this.SuspendLayout();
+            // 
+            // DATABASE
+            // 
+            this.DATABASE.FormattingEnabled = true;
+            this.DATABASE.Location = new System.Drawing.Point(-1, 2);
+            this.DATABASE.Name = "DATABASE";
+            this.DATABASE.Size = new System.Drawing.Size(212, 446);
+            this.DATABASE.TabIndex = 0;
+            // 
+            // principal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DATABASE);
+            this.Name = "principal";
             this.Text = "principal";
+            this.Load += new System.EventHandler(this.principal_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ListBox DATABASE;
     }
 }

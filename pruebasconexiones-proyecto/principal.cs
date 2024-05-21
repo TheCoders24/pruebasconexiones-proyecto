@@ -22,7 +22,8 @@ namespace pruebasconexiones_proyecto
 
         private void principal_Load(object sender, EventArgs e)
         {
-            MostrarDBS();
+            //MostrarDBS();
+          
         }
 
         #region funcionmostrarDB
@@ -53,6 +54,6 @@ namespace pruebasconexiones_proyecto
                 connection.Close();
             }
         }
-        #endregion
+        #endregion    
     }
 }

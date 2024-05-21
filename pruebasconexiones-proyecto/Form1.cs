@@ -20,6 +20,7 @@ namespace pruebasconexiones_proyecto
         public string password;
         #endregion
 
+        #region metodos forms
         public Form1()
         {
             InitializeComponent();
@@ -29,14 +30,12 @@ namespace pruebasconexiones_proyecto
             conexiondb.users = user;
             conexiondb.password = password;
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             conexiondb conexiondb = new conexiondb();
             SqlConnection conexion = conexiondb.GetConnection();
             MessageBox.Show(conexion.ConnectionString);
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             servidor = txtServidor.Text;
@@ -79,5 +78,8 @@ namespace pruebasconexiones_proyecto
                 }
             }
         }
+        #endregion
+    
+
     }
 }

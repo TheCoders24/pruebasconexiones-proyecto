@@ -70,7 +70,7 @@
             this.txtUsers.Name = "txtUsers";
             this.txtUsers.Size = new System.Drawing.Size(134, 20);
             this.txtUsers.TabIndex = 4;
-            this.txtUsers.Text = "sa";
+            this.txtUsers.Text = "alexis";
             // 
             // label2
             // 

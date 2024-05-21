@@ -15,9 +15,16 @@ namespace pruebasconexiones_proyecto
 {
     public partial class principal : Form
     {
+        public string servidor;
+        public string user;
+        public string password;
+
         public principal()
         {
             InitializeComponent();
+            servidor = conexiondb.ServidorNo;
+            user = conexiondb.users;
+            password = conexiondb.password;
         }
 
         private void principal_Load(object sender, EventArgs e)
@@ -28,11 +35,12 @@ namespace pruebasconexiones_proyecto
         #region funcionmostrarDB
         public void MostrarDBS()
         {
-            // Asegúrate de que tu clase conexiondb esté configurada correctamente
-            SqlConnection connection = conexiondb.GetConnection();
-
             try
             {
+                // Asegúrate de que tu clase conexiondb esté configurada correctamente
+                //SqlConnection connection = conexiondb.GetConnection(conexiondb.ServidorNo, conexiondb.users, conexiondb.password);
+
+                SqlConnection connection = conexiondb.GetConnection(servidor, user, password);
                 connection.Open();
 
                 // Obtener la lista de bases de datos
@@ -69,20 +77,21 @@ namespace pruebasconexiones_proyecto
 
                     DATABASE.Nodes.Add(dbNode);
                 }
+
+                connection.Close(); // Cerrar la conexión después de usarla
             }
             catch (SqlException ex)
             {
                 // Manejar la excepción y mostrar información adicional
-                MessageBox.Show($"Error al conectarse a la base de datos: {ex.Message}\nConnection String: {connection.ConnectionString}");
-            }
-            finally
-            {
-                connection.Close();
+                MessageBox.Show($"Error al conectarse a la base de datos: {ex.Message}\nConnection String: {conexiondb.GetConnection(conexiondb.ServidorNo, conexiondb.users, conexiondb.password).ConnectionString}");
             }
         }
-
-
         #endregion
 
+        private void creardbToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            creadordb creadordb = new creadordb();
+            creadordb.Show();
+        }
     }
 }

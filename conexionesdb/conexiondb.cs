@@ -27,16 +27,17 @@ namespace conexionesdb
 
         #region conexionesDB
 
-        public static string conexionStatic(string servidores1, string users1, string passsword)
+        public static string conexionStatic(string servidor, string user, string passsword)
         {
-            ServidorNo = servidores1;
-            users = users1;
+            ServidorNo = servidor;
+            users = user;
             password = passsword;
             return $"Data Source={ServidorNo};User ID={users};Password={password};TrustServerCertificate=true;";
         }
-        public static SqlConnection GetConnection()
+
+        public static SqlConnection GetConnection(string servidor, string user, string password)
         {
-            SqlConnection conexion = new SqlConnection(conexionStatic(ServidorNo, users, password));
+            SqlConnection conexion = new SqlConnection(conexionStatic(servidor, user, password));
             return conexion;
         }
         #endregion
@@ -55,9 +56,6 @@ namespace conexionesdb
             }
         }
         #endregion
-
-
-
 
     }
 }

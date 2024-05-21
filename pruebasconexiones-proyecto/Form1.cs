@@ -24,62 +24,69 @@ namespace pruebasconexiones_proyecto
         public Form1()
         {
             InitializeComponent();
-            conexiondb conexiondb = new conexiondb();
-           
+            
             conexiondb.ServidorNo = servidor;
             conexiondb.users = user;
             conexiondb.password = password;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            conexiondb conexiondb = new conexiondb();
-            SqlConnection conexion = conexiondb.GetConnection();
+           
+            SqlConnection conexion = conexiondb.GetConnection(servidor,user,password);
             MessageBox.Show(conexion.ConnectionString);
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            servidor = txtServidor.Text;
-            user = txtUsers.Text;
-            password = txtPassword.Text;
+            try
+            {
+                servidor = txtServidor.Text;
+                user = txtUsers.Text;
+                password = txtPassword.Text;
 
-            if (string.IsNullOrEmpty(servidor))
-            {
-                MessageBox.Show("Por favor, ingrese el servidor.");
-                return;
-            }
-            if (string.IsNullOrEmpty(user))
-            {
-                MessageBox.Show("Por favor, ingrese el usuario.");
-                return;
-            }
-            if (string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Por favor, ingrese la contraseña.");
-                return;
-            }
-
-            // Establecer los detalles del servidor
-            conexiondb.conexionStatic(servidor, user, password);
-
-            using (SqlConnection connection = conexiondb.GetConnection())
-            {
-                try
+                if (string.IsNullOrEmpty(servidor))
                 {
-                    connection.Open();
-                    MessageBox.Show("¡Conexión exitosa!");
-
-                    principal principal = new principal();
-                    principal.Show();
-                    this.Hide();
+                    MessageBox.Show("Por favor, ingrese el servidor.");
+                    return;
                 }
-                catch (Exception ex)
+                if (string.IsNullOrEmpty(user))
                 {
-                    MessageBox.Show("Error al conectar a la base de datos: " + ex.Message);
+                    MessageBox.Show("Por favor, ingrese el usuario.");
+                    return;
                 }
+                if (string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Por favor, ingrese la contraseña.");
+                    return;
+                }
+
+                // Establecer los detalles del servidor
+                conexiondb.conexionStatic(servidor, user, password);
+
+                using (SqlConnection connection = conexiondb.GetConnection(servidor, user, password))
+                {
+                    // Ahora podemos mostrar la cadena de conexión después de obtenerla
+                    MessageBox.Show(connection.ConnectionString);
+
+                    try
+                    {
+                        connection.Open();
+                        MessageBox.Show("¡Conexión exitosa!");
+
+                        principal principal = new principal();
+                        principal.Show();
+                        this.Hide();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al conectar a la base de datos: " + ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al crear la base de datos: {ex.Message}");
             }
         }
         #endregion
-    
-
     }
 }

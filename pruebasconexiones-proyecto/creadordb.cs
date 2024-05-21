@@ -29,10 +29,16 @@ namespace pruebasconexiones_proyecto
             user = conexiondb.users;
             password = conexiondb.password;
         }
-      
+        
         private void creadordb_Load(object sender, EventArgs e)
         {
+            // Crea las columnas en el DataGridView
+            dataGridView1.Columns.Add("NombreTabla", "Nombre de la Tabla");
+            dataGridView1.Columns.Add("Campos", "Campos");
 
+            // Opcionalmente, puedes definir el estilo de las columnas, por ejemplo:
+            dataGridView1.Columns["NombreTabla"].Width = 150;
+            dataGridView1.Columns["Campos"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void btncrearbasededatos_Click(object sender, EventArgs e)
@@ -76,41 +82,45 @@ namespace pruebasconexiones_proyecto
         {
             try
             {
-                // Recopilar la información de las tablas desde el DataGridView
-                DataTable dtTablas = (DataTable)dataGridView1.DataSource;
+                // Abre la conexión a la base de datos
+                connection.Open();
 
-                foreach (DataRow rowTabla in dtTablas.Rows)
+                // Recorre las filas del DataGridView para crear las tablas y campos
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    string nombreTabla = rowTabla.Field<string>("NombreTabla");
+                    string nombreTabla = row.Cells["NombreTabla"].Value?.ToString();
 
-                    // Crear la consulta SQL para crear la tabla
-                    string queryCrearTabla = $"CREATE TABLE [{nombreBaseDeDatos}].[dbo].[{nombreTabla}] (";
-
-                    // Obtener los campos de la tabla
-                    DataTable dtCampos = (DataTable)rowTabla["Campos"];
-
-                    foreach (DataRow rowCampo in dtCampos.Rows)
+                    if (!string.IsNullOrEmpty(nombreTabla))
                     {
-                        string nombreCampo = rowCampo.Field<string>("NombreCampo");
-                        string tipoCampo = rowCampo.Field<string>("TipoCampo");
+                        string campos = row.Cells["Campos"].Value?.ToString();
 
-                        queryCrearTabla += $"{nombreCampo} {tipoCampo},"; // Agregar cada campo a la consulta
-                    }
+                        if (!string.IsNullOrEmpty(campos))
+                        {
+                            // Crea la consulta SQL para crear la tabla
+                            string queryCrearTabla = $"CREATE TABLE [{nombreTabla}] ({campos})";
 
-                    queryCrearTabla = queryCrearTabla.TrimEnd(',') + ")"; // Eliminar la última coma y cerrar paréntesis
-
-                    // Ejecutar la consulta para crear la tabla
-                    using (SqlCommand commandCrearTabla = new SqlCommand(queryCrearTabla, connection))
-                    {
-                        commandCrearTabla.ExecuteNonQuery();
+                            // Ejecuta la consulta para crear la tabla
+                            using (SqlCommand commandCrearTabla = new SqlCommand(queryCrearTabla, connection))
+                            {
+                                commandCrearTabla.ExecuteNonQuery();
+                            }
+                        }
                     }
                 }
 
-                MessageBox.Show("Tablas y campos creados con éxito.");
+                MessageBox.Show("Tablas creadas con éxito.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al crear las tablas y campos: {ex.Message}");
+                MessageBox.Show($"Error al crear las tablas: {ex.Message}");
+            }
+            finally
+            {
+                // Cierra la conexión a la base de datos
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
             }
         }
 

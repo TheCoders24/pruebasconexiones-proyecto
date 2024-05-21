@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtnombredebasededatos = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxdatabase = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,11 +72,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(744, 371);
             this.dataGridView1.TabIndex = 3;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "using";
+            // 
+            // comboBoxdatabase
+            // 
+            this.comboBoxdatabase.FormattingEnabled = true;
+            this.comboBoxdatabase.Location = new System.Drawing.Point(67, 38);
+            this.comboBoxdatabase.Name = "comboBoxdatabase";
+            this.comboBoxdatabase.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxdatabase.TabIndex = 5;
+            // 
             // creadordb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxdatabase);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtnombredebasededatos);
             this.Controls.Add(this.label1);
@@ -94,5 +115,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtnombredebasededatos;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxdatabase;
     }
 }

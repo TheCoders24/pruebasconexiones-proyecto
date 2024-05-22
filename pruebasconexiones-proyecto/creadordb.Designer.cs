@@ -82,9 +82,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.Size = new System.Drawing.Size(102, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "using";
+            this.label2.Text = "using base de datos";
             // 
             // btnsavetable
             // 
@@ -124,7 +124,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(68, 38);
+            this.textBox2.Location = new System.Drawing.Point(123, 38);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(172, 20);
             this.textBox2.TabIndex = 10;
